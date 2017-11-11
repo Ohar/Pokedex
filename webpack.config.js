@@ -66,6 +66,10 @@ module.exports = {
 			: plugins.prod,
 	),
 
+	resolve: {
+		extensions: ['.js', '.jsx'],
+	},
+
 	module: {
 		rules: [
 			{
