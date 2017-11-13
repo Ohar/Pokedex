@@ -3,6 +3,7 @@ import './style.less'
 import signalRequestLoadPokemonList from './../../flux/state/signals/requestLoadPokemonList'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import Spinner from './../Spinner'
 
 class PokemonList extends Component {
@@ -29,6 +30,12 @@ class PokemonList extends Component {
       </section>
     )
   }
+}
+
+PokemonList.propTypes = {
+  pokemonList       : PropTypes.array,
+  pokemonListLoading: PropTypes.bool,
+  loadPokemonList   : PropTypes.func,
 }
 
 function mapDispatchToProps (dispatch) {

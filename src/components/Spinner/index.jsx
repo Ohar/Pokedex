@@ -1,6 +1,7 @@
 import React from 'react'
 import './style.less'
 import Spinkit from 'react-spinkit'
+import PropTypes from 'prop-types'
 
 function Spinner ({visible = true}) {
   return visible
@@ -10,6 +11,10 @@ function Spinner ({visible = true}) {
       </div>
     )
     : null
+}
+
+Spinner.propTypes = {
+  visible: PropTypes.bool,
 }
 
 export default Spinner
