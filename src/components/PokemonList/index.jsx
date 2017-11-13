@@ -50,8 +50,8 @@ function mapDispatchToProps (dispatch) {
 function mapStateToProps (state, ownProps) {
   return {
     ...ownProps,
-    pokemonList       : state.state.pokemonList,
-    pokemonListLoading: state.state.pokemonListLoading,
+    pokemonList       : state.pokemonList,
+    pokemonListLoading: state.pokemonListLoading,
   }
 }
 
