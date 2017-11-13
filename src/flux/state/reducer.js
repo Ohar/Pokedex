@@ -21,6 +21,26 @@ export default function reducer (state = DEFAULT_STATE, action) {
         pokemonListLoading: false,
       }
 
+    case actionTypes.SET_POKEMON_LIST_FULL:
+      return {
+        ...state,
+        pokemonListFull: action.pokemonListFull,
+      }
+
+    case actionTypes.SET_SEARCH_STRING:
+      return {
+        ...state,
+        searchStr: action.searchStr,
+      }
+
+    case actionTypes.SEARCH_POKEMON:
+      return {
+        ...state,
+        pokemonList: state.pokemonListFull.filter(
+          ({name}) => name.toLowerCase().includes(state.searchStr.toLowerCase()),
+        ),
+      }
+
     default:
       return state
   }

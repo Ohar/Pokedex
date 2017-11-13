@@ -1,5 +1,10 @@
 import api from './../../../service/api'
-import { SET_POKEMON_LIST, START_LOADING_POKEMON_LIST, STOP_LOADING_POKEMON_LIST } from '../action-types'
+import {
+  SET_POKEMON_LIST,
+  SET_POKEMON_LIST_FULL,
+  START_LOADING_POKEMON_LIST,
+  STOP_LOADING_POKEMON_LIST,
+} from '../action-types'
 
 export default function signalRequestLoadPokemonList () {
   return dispatch => {
@@ -9,6 +14,10 @@ export default function signalRequestLoadPokemonList () {
       .getPokemonList()
       .then(pokemonList => {
         dispatch({type: STOP_LOADING_POKEMON_LIST})
+        dispatch({
+          type           : SET_POKEMON_LIST_FULL,
+          pokemonListFull: pokemonList,
+        })
         dispatch({
           type: SET_POKEMON_LIST,
           pokemonList,
