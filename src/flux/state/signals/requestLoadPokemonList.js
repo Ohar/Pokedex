@@ -11,7 +11,7 @@ export default function signalRequestLoadPokemonList () {
     dispatch({type: START_LOADING_POKEMON_LIST})
 
     api
-      .getPokemonList()
+      .getPokedex()
       .then(pokemonList => {
         dispatch({type: STOP_LOADING_POKEMON_LIST})
         dispatch({

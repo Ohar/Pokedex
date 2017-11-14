@@ -1,22 +1,13 @@
-const FAKE_POKEMON_LIST = [
-  {
-    id       : 'pokemon1',
-    name     : 'pokemon1',
-    avatarURL: 'http://example.com/pokemon1.png',
-  },
-]
+import { API_URL } from './../../config.json'
 
-// TODO: remove fake data after release of real API
+const URL = __DEV__
+  ? API_URL.dev
+  : API_URL.prod
+
 const API = {
-  getPokemonList () {
-    console.info('getPokemonList')
-
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-          resolve(FAKE_POKEMON_LIST)
-        },
-        2000)
-    })
+  getPokedex () {
+    return fetch(`${URL}/pokedex`)
+      .then(response => response.json())
   },
 }
 
