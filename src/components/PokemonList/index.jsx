@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Spinner from './../Spinner'
+import Pokemon from './../Pokemon'
 
 class PokemonList extends Component {
   componentDidMount () {
@@ -19,9 +20,9 @@ class PokemonList extends Component {
         <ul>
           {
             this.props.pokemonList.map(
-              ({name, id, avatar}) => (
-                <li key={id}>
-                  {name}
+              pokemon => (
+                <li key={pokemon.id}>
+                  <Pokemon pokemon={pokemon} />
                 </li>
               )
             )
