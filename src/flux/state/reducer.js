@@ -21,10 +21,28 @@ export default function reducer (state = DEFAULT_STATE, action) {
         pokemonListLoading: false,
       }
 
+    case actionTypes.START_LOADING_TYPES:
+      return {
+        ...state,
+        typesLoading: true,
+      }
+
+    case actionTypes.STOP_LOADING_TYPES:
+      return {
+        ...state,
+        typesLoading: false,
+      }
+
     case actionTypes.SET_POKEMON_LIST_FULL:
       return {
         ...state,
         pokemonListFull: action.pokemonListFull,
+      }
+
+    case actionTypes.SET_TYPES:
+      return {
+        ...state,
+        types: action.types,
       }
 
     case actionTypes.SET_SEARCH_STRING:

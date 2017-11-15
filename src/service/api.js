@@ -11,6 +11,10 @@ const API = {
       .then(response => response.json())
       .then(pokedex => pokedex.filter(e => e.id)) // Exclude broken pokemondata
   },
+  getTypes () {
+    return fetch(`${URL}/types`)
+      .then(response => response.json())
+  },
 }
 
 module.exports = API
