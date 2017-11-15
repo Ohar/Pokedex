@@ -21,7 +21,7 @@ function Pokemon ({pokemon}) {
           </tr>
           <tr>
             <th>Type</th>
-            <td>{pokemon.types.map(type => type.type.name).join(', ')}</td>
+            <td>{pokemon.types.join(', ')}</td>
           </tr>
         </tbody>
       </table>
