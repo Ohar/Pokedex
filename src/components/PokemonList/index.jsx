@@ -4,7 +4,6 @@ import signalRequestLoadPokemonList from './../../flux/state/signals/requestLoad
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import Spinner from './../Spinner'
 import Pokemon from './../Pokemon'
 
 class PokemonList extends Component {
@@ -14,29 +13,23 @@ class PokemonList extends Component {
 
   render () {
     return (
-      <section className='PokemonList'>
-        <Spinner visible={this.props.pokemonListLoading} />
-
-        <ul>
-          {
-            this.props.pokemonList.map(
-              pokemon => (
-                <li key={pokemon.id}>
-                  <Pokemon pokemon={pokemon} />
-                </li>
-              )
-            )
-          }
-        </ul>
-      </section>
+      <ul className='PokemonList'>
+        {
+          this.props.pokemonList
+            .map(pokemon => (
+              <li key={pokemon.id}>
+                <Pokemon pokemon={pokemon}/>
+              </li>
+            ))
+        }
+      </ul>
     )
   }
 }
 
 PokemonList.propTypes = {
-  pokemonList       : PropTypes.array,
-  pokemonListLoading: PropTypes.bool,
-  loadPokemonList   : PropTypes.func,
+  pokemonList    : PropTypes.array,
+  loadPokemonList: PropTypes.func,
 }
 
 function mapDispatchToProps (dispatch) {
@@ -51,8 +44,7 @@ function mapDispatchToProps (dispatch) {
 function mapStateToProps (state, ownProps) {
   return {
     ...ownProps,
-    pokemonList       : state.pokemonList,
-    pokemonListLoading: state.pokemonListLoading,
+    pokemonList: state.pokemonList,
   }
 }
 
