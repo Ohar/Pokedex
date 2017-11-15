@@ -14,14 +14,16 @@ function Pokemon ({pokemon}) {
         alt={pokemon.name}
       />
       <table className='Pokemon_params'>
-        <tr>
-          <th>Weight</th>
-          <td>{pokemon.weight}</td>
-        </tr>
-        <tr>
-          <th>Type</th>
-          <td>{pokemon.types.map(type => type.type.name).join(', ')}</td>
-        </tr>
+        <tbody>
+          <tr>
+            <th>Weight</th>
+            <td>{pokemon.weight}</td>
+          </tr>
+          <tr>
+            <th>Type</th>
+            <td>{pokemon.types.map(type => type.type.name).join(', ')}</td>
+          </tr>
+        </tbody>
       </table>
     </section>
   )
