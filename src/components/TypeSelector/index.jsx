@@ -2,13 +2,23 @@ import React, { Component } from 'react'
 import './style.less'
 import PropTypes from 'prop-types'
 import signalRequestLoadTypes from './../../flux/state/signals/requestLoadTypes'
+import actionChangeTypeFilter from './../../flux/state/actions/changeTypeFilter'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Spinner from '../Spinner'
 
 class TypeSelector extends Component {
+  constructor () {
+    super()
+    this.onChange = this.onChange.bind(this)
+  }
+
   componentDidMount () {
     this.props.loadTypes()
+  }
+
+  onChange (type, value) {
+    this.props.changeTypeFilter(type, value)
   }
 
   render () {
@@ -20,17 +30,19 @@ class TypeSelector extends Component {
 
         <ul className='TypeSelector_list'>
           {
-            this.props.types
+            this.props.typeFilterList
               .map(
-                type => {
+                ({type, state}) => {
                   const id = `checkbox_type_${type}`
 
                   return (
                     <li className='TypeSelector_item' key={type}>
                       <input
                         className='TypeSelector_input'
-                        type='checkbox'
                         id={id}
+                        checked={state}
+                        onChange={e => this.onChange(type, e.target.checked)}
+                        type='checkbox'
                       />
                       <label className='TypeSelector_label' htmlFor={id}>
                         {type}
@@ -47,15 +59,17 @@ class TypeSelector extends Component {
 }
 
 TypeSelector.propTypes = {
-  types       : PropTypes.array,
-  typesLoading: PropTypes.func,
-  loadTypes   : PropTypes.func,
+  typeFilterList  : PropTypes.array,
+  typesLoading    : PropTypes.bool,
+  loadTypes       : PropTypes.func,
+  changeTypeFilter: PropTypes.func,
 }
 
 function mapDispatchToProps (dispatch) {
   return bindActionCreators(
     {
-      loadTypes: signalRequestLoadTypes,
+      loadTypes       : signalRequestLoadTypes,
+      changeTypeFilter: actionChangeTypeFilter,
     },
     dispatch,
   )
@@ -64,8 +78,8 @@ function mapDispatchToProps (dispatch) {
 function mapStateToProps (state, ownProps) {
   return {
     ...ownProps,
-    typesLoading: state.typesLoading,
-    types       : state.types,
+    typesLoading  : state.typesLoading,
+    typeFilterList: state.typeFilterList,
   }
 }
 

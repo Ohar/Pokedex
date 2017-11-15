@@ -3,7 +3,7 @@ const DEFAULT_STATE = {
   pokemonListFull   : [],
   pokemonListLoading: false,
   searchStr         : '',
-  types             : [],
+  typeFilterList    : [],
   typesLoading      : false,
 }
 

@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Pokemon from './../Pokemon'
+import filterPokemonListByTypes from './../../utils/filterPokemonListByTypes'
 
 class PokemonList extends Component {
   componentDidMount () {
@@ -16,6 +17,7 @@ class PokemonList extends Component {
       <ul className='PokemonList'>
         {
           this.props.pokemonList
+            .filter(filterPokemonListByTypes(this.props.typeFilterList))
             .slice(0, 20) // TODO: need pagination here
             .map(pokemon => (
               <li
@@ -32,6 +34,7 @@ class PokemonList extends Component {
 
 PokemonList.propTypes = {
   pokemonList    : PropTypes.array,
+  typeFilterList : PropTypes.array,
   loadPokemonList: PropTypes.func,
 }
 
@@ -47,7 +50,8 @@ function mapDispatchToProps (dispatch) {
 function mapStateToProps (state, ownProps) {
   return {
     ...ownProps,
-    pokemonList: state.pokemonList,
+    pokemonList   : state.pokemonList,
+    typeFilterList: state.typeFilterList,
   }
 }
 

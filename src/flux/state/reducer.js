@@ -39,10 +39,23 @@ export default function reducer (state = DEFAULT_STATE, action) {
         pokemonListFull: action.pokemonListFull,
       }
 
-    case actionTypes.SET_TYPES:
+    case actionTypes.SET_TYPE_FILTER_LIST:
       return {
         ...state,
-        types: action.types,
+        typeFilterList: action.typeFilterList,
+      }
+
+    case actionTypes.CHANGE_TYPE_FILTER:
+      return {
+        ...state,
+        typeFilterList: state.typeFilterList.map(
+          typeFilter => typeFilter.type === action.typeName
+            ? {
+              ...typeFilter,
+              state: action.value,
+            }
+            : typeFilter,
+        ),
       }
 
     case actionTypes.SET_SEARCH_STRING:
