@@ -9,6 +9,7 @@ function Search ({searchStr, searchPokemon}) {
   return (
     <section className='Search'>
       <input
+        className='Search_input'
         autoFocus
         type='search'
         value={searchStr}

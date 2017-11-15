@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 function Pokemon ({pokemon}) {
   return (
     <section className='Pokemon'>
-      <span className='Pokemon_name'>{pokemon.name}</span>
+      <header className='Pokemon_name'>{pokemon.name}</header>
     </section>
   )
 }
