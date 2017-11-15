@@ -8,7 +8,8 @@ const URL = __DEV__
 const API = {
   getPokedex () {
     return fetch(`${URL}/pokedex`)
-      .then(response => response.json().filter(e => e))
+      .then(response => response.json())
+      .then(pokedex => pokedex.filter(e => e.id)) // Exclude broken pokemondata
   },
 }
 
