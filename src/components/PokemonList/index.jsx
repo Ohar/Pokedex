@@ -16,6 +16,7 @@ class PokemonList extends Component {
       <ul className='PokemonList'>
         {
           this.props.pokemonList
+            .slice(0, 20) // TODO: need pagination here
             .map(pokemon => (
               <li
                 className='PokemonList_item'
