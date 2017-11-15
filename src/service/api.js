@@ -1,4 +1,5 @@
 import { API_URL } from './../../config.json'
+import 'whatwg-fetch'
 
 const URL = __DEV__
   ? API_URL.dev
@@ -7,7 +8,7 @@ const URL = __DEV__
 const API = {
   getPokedex () {
     return fetch(`${URL}/pokedex`)
-      .then(response => response.json())
+      .then(response => response.json().filter(e => e))
   },
 }
 
