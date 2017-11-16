@@ -1,7 +1,18 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
-import reducer from './state/reducer'
+import reducerSearch from './state/search/reducer'
+import reducerPokemonList from './state/pokemonList/reducer'
+import reducerTypes from './state/types/reducer'
 
-const store = createStore(reducer, applyMiddleware(thunk))
+const reducers = combineReducers({
+  search     : reducerSearch,
+  pokemonList: reducerPokemonList,
+  types      : reducerTypes,
+})
+
+const store = createStore(
+  reducers,
+  applyMiddleware(thunk),
+)
 
 export default store

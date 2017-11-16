@@ -1,5 +1,5 @@
-import api from './../../../service/api'
-import convertTypesIntoTypeFilterList from './../../../utils/convertTypesIntoTypeFilterList'
+import api from './../../../../service/api'
+import convertTypesIntoTypeFilterList from './../../../../utils/convertTypesIntoTypeFilterList'
 import {
   SET_TYPE_FILTER_LIST,
   START_LOADING_TYPES,
@@ -15,8 +15,8 @@ export default function signalRequestLoadTypes () {
       .then(types => {
         dispatch({type: STOP_LOADING_TYPES})
         dispatch({
-          type          : SET_TYPE_FILTER_LIST,
-          typeFilterList: convertTypesIntoTypeFilterList(types),
+          type      : SET_TYPE_FILTER_LIST,
+          filterList: convertTypesIntoTypeFilterList(types),
         })
       })
       .catch(err => {

@@ -23,7 +23,7 @@ Pokedex.propTypes = {
 function mapStateToProps (state, ownProps) {
   return {
     ...ownProps,
-    pokemonListLoading: state.pokemonListLoading,
+    pokemonListLoading: state.pokemonList.loading,
   }
 }
 

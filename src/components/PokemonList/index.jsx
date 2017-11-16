@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import './style.less'
-import signalRequestLoadPokemonList from './../../flux/state/signals/requestLoadPokemonList'
+import signalRequestLoadPokemonList from './../../flux/state/pokemonList/signals/requestLoadPokemonList'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Pokemon from './../Pokemon'
 import filterPokemonListByTypes from './../../utils/filterPokemonListByTypes'
+import filterPokemonListByNames from './../../utils/filterPokemonListByNames'
 
 class PokemonList extends Component {
   componentDidMount () {
@@ -18,6 +19,7 @@ class PokemonList extends Component {
         {
           this.props.pokemonList
             .filter(filterPokemonListByTypes(this.props.typeFilterList))
+            .filter(filterPokemonListByNames(this.props.searchStr))
             .slice(0, 20) // TODO: need pagination here
             .map(pokemon => (
               <li
@@ -36,6 +38,7 @@ PokemonList.propTypes = {
   pokemonList    : PropTypes.array,
   typeFilterList : PropTypes.array,
   loadPokemonList: PropTypes.func,
+  searchStr      : PropTypes.string,
 }
 
 function mapDispatchToProps (dispatch) {
@@ -50,8 +53,9 @@ function mapDispatchToProps (dispatch) {
 function mapStateToProps (state, ownProps) {
   return {
     ...ownProps,
-    pokemonList   : state.pokemonList,
-    typeFilterList: state.typeFilterList,
+    pokemonList   : state.pokemonList.list,
+    typeFilterList: state.types.filterList,
+    searchStr     : state.search.str,
   }
 }
 

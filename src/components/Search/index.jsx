@@ -3,7 +3,7 @@ import './style.less'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import actionSearchPokemon from './../../flux/state/actions/searchPokemon'
+import actionSetSearchStr from './../../flux/state/search/actions/setSearchStr'
 
 function Search ({searchStr, searchPokemon}) {
   return (
@@ -27,7 +27,7 @@ Search.propTypes = {
 function mapDispatchToProps (dispatch) {
   return bindActionCreators(
     {
-      searchPokemon: actionSearchPokemon,
+      searchPokemon: actionSetSearchStr,
     },
     dispatch,
   )
@@ -36,7 +36,7 @@ function mapDispatchToProps (dispatch) {
 function mapStateToProps (state, ownProps) {
   return {
     ...ownProps,
-    searchStr: state.searchStr,
+    searchStr: state.search.str,
   }
 }
 
