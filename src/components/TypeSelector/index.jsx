@@ -8,17 +8,8 @@ import { bindActionCreators } from 'redux'
 import Spinner from '../Spinner'
 
 class TypeSelector extends Component {
-  constructor () {
-    super()
-    this.onChange = this.onChange.bind(this)
-  }
-
   componentDidMount () {
     this.props.loadTypes()
-  }
-
-  onChange (type, value) {
-    this.props.changeTypeFilter(type, value)
   }
 
   render () {
@@ -41,7 +32,7 @@ class TypeSelector extends Component {
                         className='TypeSelector_input'
                         id={id}
                         checked={state}
-                        onChange={e => this.onChange(type, e.target.checked)}
+                        onChange={e => this.props.changeTypeFilter(type, e.target.checked)}
                         type='checkbox'
                       />
                       <label className='TypeSelector_label' htmlFor={id}>
@@ -52,7 +43,6 @@ class TypeSelector extends Component {
                 })
           }
         </ul>
-
       </section>
     )
   }
