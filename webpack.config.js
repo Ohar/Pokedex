@@ -26,10 +26,11 @@ const plugins = {
   dev: [
     new BrowserSyncPlugin(
       {
-        host  : process.env.IP || 'localhost',
-        port  : process.env.PORT || 3000,
-        open  : false,
-        server: {
+        host           : process.env.IP || 'localhost',
+        port           : process.env.PORT || 3000,
+        open           : false,
+        reloadOnRestart: true,
+        server         : {
           baseDir: ['./dist'],
         },
       },
