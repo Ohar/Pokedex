@@ -3,6 +3,7 @@ const webpack            = require('webpack')
 const BrowserSyncPlugin  = require('browser-sync-webpack-plugin')
 const ExtractTextPlugin  = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const HtmlWebpackPlugin  = require('html-webpack-plugin')
 
 const __DEV__ = Boolean(JSON.parse(process.env.DEV || 'true'))
 
@@ -10,6 +11,16 @@ const plugins = {
   common: [
     new webpack.DefinePlugin({__DEV__}),
     new ExtractTextPlugin('[name].css'),
+    new HtmlWebpackPlugin({
+      title   : 'Pokedex',
+      template: './index.html',
+      minify  : __DEV__
+        ? false
+        : {
+          collapseWhitespace: true,
+          minifyCSS         : true,
+        },
+    }),
   ],
 
   dev: [
@@ -19,7 +30,7 @@ const plugins = {
         port  : process.env.PORT || 3000,
         open  : false,
         server: {
-          baseDir: ['./', './build'],
+          baseDir: ['./dist'],
         },
       },
     ),
@@ -40,6 +51,14 @@ const plugins = {
       },
     ),
     new webpack.optimize.OccurrenceOrderPlugin(),
+    new HtmlWebpackPlugin({
+      title   : 'Pokedex',
+      template: './index.html',
+      minify  : {
+        collapseWhitespace: true,
+        minifyCSS         : true,
+      },
+    }),
   ],
 }
 
@@ -54,7 +73,7 @@ module.exports = {
   output: {
     pathinfo  : true,
     path      : path.resolve(__dirname, 'dist'),
-    publicPath: './dist/',
+    publicPath: './',
     filename  : 'bundle.js',
   },
 
