@@ -12,6 +12,8 @@ export default function signalRequestLoadTypes () {
     api
       .getTypes()
       .then(list => {
+        list.sort()
+
         dispatch({type: STOP_LOADING_TYPES})
         dispatch({
           type: SET_TYPE_LIST,
