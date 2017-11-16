@@ -38,6 +38,7 @@ const plugins = {
 
   prod: [
     new CleanWebpackPlugin(['dist', 'build']),
+    new webpack.EnvironmentPlugin(['NODE_ENV']),
     new webpack.optimize.UglifyJsPlugin(
       {
         drop_console: true,
