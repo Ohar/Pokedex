@@ -1,6 +1,7 @@
 const DEFAULT_STATE = {
-  filterList: [],
-  loading   : false,
+  filter : 'all',
+  list   : [],
+  loading: false,
 }
 
 export default DEFAULT_STATE

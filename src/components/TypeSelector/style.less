@@ -2,33 +2,12 @@
   background-color: green;
 }
 
-.TypeSelector_list {
-  display: inline-block;
-  padding-left: 1rem;
-  margin: 0;
+.TypeSelector_select {
+  font-size: 2rem;
+  text-transform: capitalize;
 }
 
-.TypeSelector_item {
-  display: inline-block;
-  position: relative;
-
-  & + & {
-    margin-left: 1rem;
-  }
-}
-
-.TypeSelector_label {
+.TypeSelector_option {
   text-transform: capitalize;
   background-color: lightsalmon;
-
-  .TypeSelector_input:checked + & {
-    background-color: lightgreen;
-  }
-}
-
-.TypeSelector_input {
-  position: absolute;
-  opacity: .01; // Bcz 0 would disable it at IE
-  top: 0;
-  left: 0;
 }

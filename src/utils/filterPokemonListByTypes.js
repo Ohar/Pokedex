@@ -1,9 +1,8 @@
-function filterPokemonListByTypes (typeFilterList) {
-  return pokemon => pokemon.types.find(
-    pokemonType => typeFilterList.find(
-      ({type, state}) => type === pokemonType && state
-    )
-  )
+import TYPE_ALL_FILTER from './../consts/TYPE_ALL_FILTER'
+
+function filterPokemonListByTypes (typeFilter) {
+  return pokemon => pokemon.types
+    .find(type => type === typeFilter || TYPE_ALL_FILTER === typeFilter)
 }
 
 export default filterPokemonListByTypes

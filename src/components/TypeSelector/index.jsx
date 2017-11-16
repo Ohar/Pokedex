@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './style.less'
 import PropTypes from 'prop-types'
 import signalRequestLoadTypes from './../../flux/state/types/signals/requestLoadTypes'
-import actionChangeTypeFilter from './../../flux/state/types/actions/changeTypeFilter'
+import actionSetTypeFilter from './../../flux/state/types/actions/setTypeFilter'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import Spinner from '../Spinner'
@@ -19,47 +19,37 @@ class TypeSelector extends Component {
 
         Types
 
-        <ul className='TypeSelector_list'>
+        <select className='TypeSelector_select' onChange={e => this.props.setTypeFilter(e.target.value)}>
+          <option className='TypeSelector_option' value='all'>
+            All
+          </option>
           {
-            this.props.typeFilterList
-              .map(
-                ({type, state}) => {
-                  const id = `checkbox_type_${type}`
-
-                  return (
-                    <li className='TypeSelector_item' key={type}>
-                      <input
-                        className='TypeSelector_input'
-                        id={id}
-                        checked={state}
-                        onChange={e => this.props.changeTypeFilter(type, e.target.checked)}
-                        type='checkbox'
-                      />
-                      <label className='TypeSelector_label' htmlFor={id}>
-                        {type}
-                      </label>
-                    </li>
-                  )
-                })
+            this.props.typesList
+              .map(type => (
+                <option className='TypeSelector_option' value={type} key={type}>
+                  {type}
+                </option>
+              ))
           }
-        </ul>
+        </select>
       </section>
     )
   }
 }
 
 TypeSelector.propTypes = {
-  typeFilterList  : PropTypes.array,
-  typesLoading    : PropTypes.bool,
-  loadTypes       : PropTypes.func,
-  changeTypeFilter: PropTypes.func,
+  typesFilter  : PropTypes.string,
+  typesList    : PropTypes.array,
+  typesLoading : PropTypes.bool,
+  loadTypes    : PropTypes.func,
+  setTypeFilter: PropTypes.func,
 }
 
 function mapDispatchToProps (dispatch) {
   return bindActionCreators(
     {
-      loadTypes       : signalRequestLoadTypes,
-      changeTypeFilter: actionChangeTypeFilter,
+      loadTypes    : signalRequestLoadTypes,
+      setTypeFilter: actionSetTypeFilter,
     },
     dispatch,
   )
@@ -68,8 +58,9 @@ function mapDispatchToProps (dispatch) {
 function mapStateToProps (state, ownProps) {
   return {
     ...ownProps,
-    typesLoading  : state.types.loading,
-    typeFilterList: state.types.filterList,
+    typesFilter : state.types.filter,
+    typesList   : state.types.list,
+    typesLoading: state.types.loading,
   }
 }
 

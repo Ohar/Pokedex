@@ -18,7 +18,7 @@ class PokemonList extends Component {
       <ul className='PokemonList'>
         {
           this.props.pokemonList
-            .filter(filterPokemonListByTypes(this.props.typeFilterList))
+            .filter(filterPokemonListByTypes(this.props.typesFilter))
             .filter(filterPokemonListByNames(this.props.searchStr))
             .slice(0, 20) // TODO: need pagination here
             .map(pokemon => (
@@ -36,7 +36,7 @@ class PokemonList extends Component {
 
 PokemonList.propTypes = {
   pokemonList    : PropTypes.array,
-  typeFilterList : PropTypes.array,
+  typesFilter    : PropTypes.string,
   loadPokemonList: PropTypes.func,
   searchStr      : PropTypes.string,
 }
@@ -53,9 +53,9 @@ function mapDispatchToProps (dispatch) {
 function mapStateToProps (state, ownProps) {
   return {
     ...ownProps,
-    pokemonList   : state.pokemonList.list,
-    typeFilterList: state.types.filterList,
-    searchStr     : state.search.str,
+    pokemonList: state.pokemonList.list,
+    typesFilter: state.types.filter,
+    searchStr  : state.search.str,
   }
 }
 

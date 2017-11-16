@@ -15,23 +15,16 @@ export default function reducer (state = DEFAULT_STATE, action) {
         loading: false,
       }
 
-    case actionTypes.SET_TYPE_FILTER_LIST:
+    case actionTypes.SET_TYPE_LIST:
       return {
         ...state,
-        filterList: action.filterList,
+        list: action.list,
       }
 
-    case actionTypes.CHANGE_TYPE_FILTER:
+    case actionTypes.SET_TYPE_FILTER:
       return {
         ...state,
-        filterList: state.filterList.map(
-          typeFilter => typeFilter.type === action.typeName
-            ? {
-              ...typeFilter,
-              state: action.value,
-            }
-            : typeFilter,
-        ),
+        filter: action.filter,
       }
 
     default:
