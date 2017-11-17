@@ -1,14 +1,14 @@
 @import './../var';
 
 .ControlPanel {
-  background-color: tomato;
+  background-color: red;
   display: flex;
   justify-content: space-around;
+  border-bottom: 5px solid #000;
 
   @media only screen and (max-width: @breakpoint) {
     & {
       flex-direction: column;
-      background-color: coral;
     }
   }
 }

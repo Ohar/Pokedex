@@ -1,8 +1,6 @@
 @import './../var';
 
 .Search {
-  background-color: gold;
-
   @media only screen and (max-width: @breakpoint) {
     & {
       width: 100vw;
@@ -11,7 +9,9 @@
 }
 
 .Search_input {
-  font-size: 2rem;
+  font-size: @control_fz;
+  height: @control_panel_height;
+  border-color: transparent;
 
   @media only screen and (max-width: @breakpoint) {
     & {

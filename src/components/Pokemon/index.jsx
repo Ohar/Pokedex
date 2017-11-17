@@ -36,7 +36,14 @@ function Pokemon ({pokemon}) {
       </header>
 
       <img
-        className='Pokemon_avatar'
+        className={
+          classNames(
+            'Pokemon_avatar',
+            pokemon.sprites.front_default
+              ? ''
+              : 'Pokemon_avatar-empty',
+          )
+        }
         width='96'
         height='96'
         src={pokemon.sprites.front_default}

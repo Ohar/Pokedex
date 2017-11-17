@@ -1,8 +1,6 @@
 @import './../var';
 
 .TypeSelector {
-  background-color: green;
-
   @media only screen and (max-width: @breakpoint) {
     & {
       width: 100vw;
@@ -11,7 +9,9 @@
 }
 
 .TypeSelector_select {
-  font-size: 2rem;
+  font-size: @control_fz;
+  height: @control_panel_height;
+  border-color: transparent;
 
   @media only screen and (max-width: @breakpoint) {
     & {
@@ -21,5 +21,4 @@
 }
 
 .TypeSelector_option {
-  background-color: cadetblue;
 }
