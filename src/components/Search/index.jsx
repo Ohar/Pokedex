@@ -14,7 +14,7 @@ function Search ({searchStr, searchPokemon, location}) {
         autoFocus
         type='search'
         value={searchStr}
-        placeholder='Search…'
+        placeholder='Type pokemon name…'
         onChange={e => searchPokemon(e.target.value)} />
     </section>
   )

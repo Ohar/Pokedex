@@ -1,7 +1,21 @@
+@import './../var';
+
 .Search {
   background-color: gold;
+
+  @media only screen and (max-width: @breakpoint) {
+    & {
+      width: 100vw;
+    }
+  }
 }
 
 .Search_input {
   font-size: 2rem;
+
+  @media only screen and (max-width: @breakpoint) {
+    & {
+      width: 100%;
+    }
+  }
 }

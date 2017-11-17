@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "capitalize-first-letter": "^1.0.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.6.0",
     "react": "^16.1.0",

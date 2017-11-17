@@ -5,6 +5,7 @@ import signalRequestLoadTypes from './../../flux/state/types/signals/requestLoad
 import actionSetTypeFilter from './../../flux/state/types/actions/setTypeFilter'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import capitalizeFirstLetter from 'capitalize-first-letter'
 import Spinner from '../Spinner'
 
 class TypeSelector extends Component {
@@ -17,17 +18,15 @@ class TypeSelector extends Component {
       <section className='TypeSelector'>
         <Spinner visible={this.props.typesLoading}/>
 
-        Types
-
         <select className='TypeSelector_select' onChange={e => this.props.setTypeFilter(e.target.value)}>
           <option className='TypeSelector_option' value='all'>
-            All
+            All pokemon types
           </option>
           {
             this.props.typesList
               .map(type => (
                 <option className='TypeSelector_option' value={type} key={type}>
-                  {type}
+                  {capitalizeFirstLetter(type)}
                 </option>
               ))
           }

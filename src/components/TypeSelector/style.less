@@ -1,13 +1,25 @@
+@import './../var';
+
 .TypeSelector {
   background-color: green;
+
+  @media only screen and (max-width: @breakpoint) {
+    & {
+      width: 100vw;
+    }
+  }
 }
 
 .TypeSelector_select {
   font-size: 2rem;
-  text-transform: capitalize;
+
+  @media only screen and (max-width: @breakpoint) {
+    & {
+      width: 100%;
+    }
+  }
 }
 
 .TypeSelector_option {
-  text-transform: capitalize;
-  background-color: lightsalmon;
+  background-color: cadetblue;
 }
