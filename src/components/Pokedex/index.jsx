@@ -6,18 +6,18 @@ import Spinner from '../Spinner'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-function Pokedex ({pokemonListLoading}) {
+function Pokedex ({pokemonListLoading, match}) {
   return (
     <section className='Pokedex'>
-      <ControlPanel />
-      <Spinner visible={pokemonListLoading}/>
-      <PokemonList />
+      <ControlPanel/>
+      <PokemonList page={match.params.page}/>
     </section>
   )
 }
 
 Pokedex.propTypes = {
   pokemonListLoading: PropTypes.bool,
+  match             : PropTypes.object,
 }
 
 function mapStateToProps (state, ownProps) {

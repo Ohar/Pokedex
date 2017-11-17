@@ -5,7 +5,8 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import actionSetSearchStr from './../../flux/state/search/actions/setSearchStr'
 
-function Search ({searchStr, searchPokemon}) {
+function Search ({searchStr, searchPokemon, location}) {
+  console.info('Search location', location)
   return (
     <section className='Search'>
       <input
