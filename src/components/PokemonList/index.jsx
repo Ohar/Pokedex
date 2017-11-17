@@ -19,8 +19,12 @@ class PokemonList extends Component {
   }
 
   render () {
-    const MAX_ITEMS     = this.props.pokemonList.length
-    const MAX_PAGE      = (MAX_ITEMS - MAX_ITEMS % PAGE_SIZE) / PAGE_SIZE
+    const pokemonListFiltered = this.props.pokemonList
+      .filter(filterPokemonListByTypes(this.props.typesFilter))
+      .filter(filterPokemonListByNames(this.props.searchStr))
+
+    const MAX_ITEMS     = pokemonListFiltered.length
+    const MAX_PAGE      = (MAX_ITEMS + PAGE_SIZE - MAX_ITEMS % PAGE_SIZE) / PAGE_SIZE
     const currPage      = Math.min(MAX_PAGE, Number(this.props.page) || MIN_PAGE)
     const {first, last} = countPageSliceIndexes(currPage, MAX_ITEMS)
 
@@ -32,9 +36,7 @@ class PokemonList extends Component {
 
         <ul className='PokemonList_list'>
           {
-            this.props.pokemonList
-              .filter(filterPokemonListByTypes(this.props.typesFilter))
-              .filter(filterPokemonListByNames(this.props.searchStr))
+            pokemonListFiltered
               .slice(first, last)
               .map(pokemon => (
                 <li
