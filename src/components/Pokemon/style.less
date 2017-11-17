@@ -1,4 +1,6 @@
-@pokemon_size: 200px;
+@import './../../../fonts/pokemon/stylesheet.css';
+
+@pokemon_size: 250px;
 @avatar_size: 96px;
 
 .Pokemon {
@@ -11,12 +13,42 @@
   padding: .5rem;
 }
 
+.Pokemon_header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+  margin-bottom: .5rem;
+  height: 5rem;
+}
+
 .Pokemon_name {
+  @size: 1rem;
+
   display: block;
+  position: relative;
   text-align: center;
-  text-transform: capitalize;
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  font-size: 2 * @size;
+  color: #385FAA;
+
+  &-long {
+    font-size: @size;
+  }
+
+  &:after {
+    content: attr(data-name);
+    color: #FFCB05;
+    font-family: 'Pokemon Solid', sans-serif;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+}
+
+.Pokemon_letter {
+  position: relative;
+  font-family: 'Pokemon Hollow', sans-serif;
+  z-index: 1;
 }
 
 .Pokemon_avatar {
@@ -31,4 +63,10 @@
 
 .Pokemon_params {
   width: 100%;
+}
+
+.Pokemon_cell {
+  &-head {
+    width: 30%;
+  }
 }
